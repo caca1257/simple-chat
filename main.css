@@ -8,12 +8,14 @@ html, body{
 	height: 100%;
 }
 
+#firstLink a{
+	list-style: none;
+	text-decoration: none;
+
+}
 h1{
 	text-align: center;
 	padding-top: 5%;
 }
-#message{
-	margin: auto;
-	
-}
+
 
