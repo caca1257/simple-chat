@@ -7,7 +7,12 @@ html, body{
 	padding: 0;
 	height: 100%;
 }
-
+#firstLink{
+	display: block;
+	width:100px; 
+	position:relative;
+	margin:auto;
+}
 #firstLink a{
 	list-style: none;
 	text-decoration: none;

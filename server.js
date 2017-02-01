@@ -1,4 +1,5 @@
 // HTTP Portion
+//not making any changes in the http portion
 var http = require('http');
 var fs = require('fs'); // Using the filesystem module
 var httpServer = http.createServer(requestHandler);
@@ -32,6 +33,7 @@ function requestHandler(req, res) {
 
 // WebSocket Portion
 // WebSockets work with the HTTP server
+/*tjos os where we send and recieve events*/
 var io = require('socket.io').listen(httpServer);
 
 // Register a callback function to run when we have an individual connection
