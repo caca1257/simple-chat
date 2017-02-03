@@ -52,9 +52,12 @@ io.sockets.on('connection',
 		socket.on('chatmessage', function(data) {
 			// Data comes in as whatever was sent, including objects
 			console.log("Received: 'chatmessage' " + data);
+
+			/* this send the event to all clients EXCEPT the client it came from*/
+			socket.broadcast.emit('chatmessage', data);
 			
 			// Send it to all of the clients
-			socket.broadcast.emit('chatmessage', data);
+			// io.emit('chatmessage', data);
 		});
 		
 		

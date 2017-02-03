@@ -1,5 +1,6 @@
 <html>
 	<head>
+		<link rel="shortcut icon"  href="">
 		<link rel="stylesheet" type="text/css" href="main.css">
 		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
 		<script type="text/javascript">
@@ -16,31 +17,59 @@
 			// Receive from any event - this is recieved from the server's broadcast.emit
 			socket.on('chatmessage', function (data) {
 				console.log(data);
-				document.getElementById('messages').innerHTML = "" + data + "" ;/*+ document.getElementById('messages').innerHTML;*/
+				// document.getElementById('messages').innerHTML = "" + data + "" ; /*+ document.getElementById('messages').innerHTML;*/
+
+				//format the data we receive into an html string 
+				var dataString = '<p> THEM: ' + data +  '</p>';
+
+				//write message to the html div 'messages' - += will add to exsiting innerHTML content
+				document.getElementById('messages').innerHTML += dataString;
+
 			});
 			
 			var sendmessage = function(message) {
 				//printing to browser console the event that's happening
-				console.log("chatmessage: " + message);
+				console.log("sending this message: " + message);
+
+				//write message to MY screen
+				document.getElementById('messages').innerHTML += '<p> ME: ' + message + '</p>';
+
 				//socket.emit sending event
 				//emit this event to the server
 				socket.emit('chatmessage', message);
+				document.getElementById('message').value="";
+
+				
 			};
 
-	
+			function showDiv(){
+				document.getElementById('chat').style.display="block";
+			}
+			
+		
 		</script>	
 	</head>
  <body>
  <!-- USE IDs to comment javascript and the html -->
  <div id="firstLink">
- 	<a href="#messages">Hello.</a>
+ 	<a onclick="showDiv()" href="#messages">Let's Chat.</a>
  </div>
 
- <div id="messages">
- No Messages Yet
- </div>
+<div id="chat">
+	 <div id="messages">
+	
+	 </div>
 
- <input type="text" id="message" name="message">
- <input type="submit" value="submit" onclick="sendmessage(document.getElementById('message').value);">
- </body>
+
+	 <div id="inputChat">
+	 <input type="text" id="message" placeholder="type a message" name="message">
+	 </div>
+
+	 <div id="submit">
+	<!--  <input type="submit" value="submit" onclick="sendmessage(document.getElementById('message').value);"> -->
+		<a onclick="sendmessage(document.getElementById('message').value);" href="#">SUBMIT</a>
+	</div>
+	
+</div>
+</body>
 </html>
